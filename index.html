@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Days Since I Quit Using Chewing Tobacco</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 5rem;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="days-since"></span>
+    <script>
+      fetch('/.netlify/functions/days-since.js')
+        .then(response => response.text())
+        .then(data => document.getElementById('days-since').textContent = data)
+        .catch(error => console.log(error));
+    </script>
+  </body>
+</html>
