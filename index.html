@@ -73,23 +73,24 @@
       <span id="celebration" style="display: none">&#x1F389; &#x1F389; &#x1F389;</span>
     </div>
     <script>
-      // Countdown to 100 days
+  // Countdown to 100 days
       const hallOfFameDate = new Date('2023-06-29');
       let countdownInterval;
       let countdown = Math.round((hallOfFameDate - new Date()) / (1000 * 60 * 60 * 24));
-      
-      function updateCountdown() {
-        const countdownElement = document.getElementById('countdown');
-        countdownElement.textContent = `Only ${countdown} day${countdown === 1 ? '' : 's'} left until the Hall of Fame!`;
-        countdown--;
-        if (countdown < 0) {
-          clearInterval(countdownInterval);
-          countdownElement.textContent = 'Congratulations! You made it to the Hall of Fame!';
-          document.getElementById('celebration').style.display = 'block';
-        }
-      }
-      
-      countdownInterval = setInterval(updateCountdown, 1000 * 60 * 60 * 24);
+
+  function updateCountdown() {
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = `Only ${countdown} day${countdown === 1 ? '' : 's'} left until the Hall of Fame!`;
+  countdown--;
+  if (countdown < 0) {
+    clearInterval(countdownInterval);
+    countdownElement.textContent = 'Congratulations! You made it to the Hall of Fame!';
+    document.getElementById('celebration').style.display = 'block';
+  }
+}
+
+countdownInterval = setInterval(updateCountdown, 1000 * 60 * 60 * 24);
+updateCountdown(); // Call the function initially to initialize the countdown display
       
       // Fetch days since quit
       fetch('/.netlify/functions/days-since')
