@@ -19,7 +19,7 @@
   <body>
     <span id="days-since"></span>
     <script>
-      fetch('/.netlify/functions/days-since.js')
+      fetch('/.netlify/functions/days-since')
         .then(response => response.text())
         .then(data => document.getElementById('days-since').textContent = data)
         .catch(error => console.log(error));
