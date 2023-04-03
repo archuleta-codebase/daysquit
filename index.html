@@ -20,7 +20,12 @@
         font-size: 3rem;
         margin-bottom: 1rem;
       }
-      
+
+      #bicep {
+        font-size: 3rem;
+        margin-right: 1rem;
+      }
+
       p {
         font-size: 1.25rem;
         margin: 0;
@@ -35,9 +40,9 @@
     </style>
   </head>
   <body>
-    <h1>Days Quit</h1>
+   <h1><span id="bicep">&#x1F4AA;</span>Days Quit</h1>
     <span id="days-since"></span>
-    <p>Keep it up!</p>
+    <p>Keep going and never give up</p>
     <script>
       fetch('/.netlify/functions/days-since')
         .then(response => response.text())
