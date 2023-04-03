@@ -14,18 +14,23 @@
         font-size: 1.5rem;
         font-family: sans-serif;
         flex-direction: column;
+        background-image: url("/images/background.jpg");
+        background-size: cover;
       }
       
       h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-
+      
       #bicep {
         font-size: 3rem;
         margin-right: 1rem;
       }
-
+      
       p {
         font-size: 1.25rem;
         margin: 0;
@@ -37,13 +42,55 @@
         margin-bottom: 1rem;
         margin-top: 1rem;
       }
+      
+      #hall-of-fame {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #countdown {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      
+      #celebration {
+        font-size: 3rem;
+        margin-top: 2rem;
+      }
     </style>
   </head>
   <body>
-   <h1><span id="bicep">&#x1F4AA;</span>Days Quit</h1>
+    <h1><span id="bicep">&#x1F4AA;</span>Days Quit</h1>
     <span id="days-since"></span>
-    <p>Keep going and never give up</p>
+    <p>Keep it up and never give up!</p>
+    <div id="hall-of-fame">
+      <div id="countdown"></div>
+      <span id="celebration" style="display: none">&#x1F389; &#x1F389; &#x1F389;</span>
+    </div>
     <script>
+      // Countdown to 100 days
+      const hallOfFameDate = new Date('2023-06-29');
+      let countdownInterval;
+      let countdown = Math.round((hallOfFameDate - new Date()) / (1000 * 60 * 60 * 24));
+      
+      function updateCountdown() {
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.textContent = `Only ${countdown} day${countdown === 1 ? '' : 's'} left until the Hall of Fame!`;
+        countdown--;
+        if (countdown < 0) {
+          clearInterval(countdownInterval);
+          countdownElement.textContent = 'Congratulations! You made it to the Hall of Fame!';
+          document.getElementById('celebration').style.display = 'block';
+        }
+      }
+      
+      countdownInterval = setInterval(updateCountdown, 1000 * 60 * 60 * 24);
+      
+      // Fetch days since quit
       fetch('/.netlify/functions/days-since')
         .then(response => response.text())
         .then(data => document.getElementById('days-since').textContent = data)
